@@ -19,7 +19,7 @@ obs=imread('e:\test\tomato.jpg');
 [n1,n2,n3] = size(obs);
 obs1 = double(obs);
 
-%随机生成一个大小为7*4*3的稀疏张量S，元素为0或1，张量S与obs点乘即可得到新的张量X
+%随机生成一个稀疏张量S，元素为0或1，张量S与obs点乘即可得到新的张量X
 %有一部分数据缺失，缺失程度可根据如下程序自行调整
 S = round(rand(n1,n2,n3)+0.3);
 X = S.*obs1;
@@ -59,6 +59,7 @@ for iter = 1:maxiter
     convergence(iter,1) = sum(X_hat(pos_unobs).^2);
 end
 
+%测试误差，绘出比较图
 X_hat1=uint8(X_hat);
 imwrite(X_hat1,'recovering tomato.JPG'),;
 %imshow('recovering apple.JPG')
